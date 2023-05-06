@@ -1,0 +1,42 @@
+        <!-- {% extends 'base.html' %}
+{% block content %} -->
+    <h1 style="width: 100%"><!--{% block title %} Add a New Student {% endblock %}--></h1>
+    <form method="post">
+        <p>
+            <label for="t_id">Professor's id:</label>
+            <input type="number" name="t_id" placeholder="t_id"></input>
+        </p>
+
+        <p>
+            <label for="t_firstname">Firstname:</label>
+            <input type="text" name="t_firstname" placeholder="t_firstname"></input>
+        </p>
+        <p>
+            <label for="t_lastname">Last Name:</label>
+            <input type="text" name="t_lastname"placeholder="t_last name"></input>
+        </p>
+
+        <p>
+            <label for="t_email">Email:</label>
+            <input type="email" name="t_email" placeholder="t_email"></input>
+        </p>
+
+        <p>
+            <label for="t_year">Year of joining:</label>
+            <input type="number" name="t_year" placeholder="t_year"></input>
+        </p>
+      
+       <p>
+          <label for="t_lab">Lab:</label>
+          <input type="text" name="t_lab" placeholder="t_lab"></input>
+       </p>
+
+        <p>
+           <label for="t_mob">Mobile number:</label>
+           <input type="number" name="t_mob" placeholder="t_mob"></input>
+        </p>
+
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
