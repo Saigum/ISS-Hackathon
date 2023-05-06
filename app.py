@@ -97,3 +97,30 @@ def delete(student_roll_no):
     db.session.delete(student)
     db.session.commit()
     return redirect(url_for('index'))
+
+@app.route('/search' ,methods=('GET','POST'))
+def search():
+
+    roll_no = request.args.get('roll_no')
+    firstname = request.args.get('firstname')
+    year = request.args.get('year')
+    branch= request.args.get('branch')
+    
+    if  not roll_no and not firstname and not year and not branch:
+        return render_template('search.html')
+    
+    results = Student.query
+    
+
+    if roll_no:
+        results = results.filter_by(roll_no = roll_no)
+    if firstname:
+        results = results.filter_by(firstname = firstname)
+    if year:
+        results = results.filter_by(year=year)
+    if branch:
+        results=results.filter_by(branch=branch)
+    
+    results = results.all()
+    
+    return render_template('search.html', results=results)
