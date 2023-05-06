@@ -1,0 +1,67 @@
+<h1 style="width: 100%">
+    <!-- {% block title %} Edit {{ student.firstname }}
+                           {{ student.lastname }}'s Details
+    {% endblock %} -->
+</h1>
+<form method="post">
+    <p>
+        <label for="t_id">Professor's id:</label>
+        <input type="number" name="t_id"
+               value= {{ teacher.t_id }}
+               placeholder="id">
+        </input>
+    </p>
+
+    <p>
+        <label for="t_firstname">Firstname:</label>
+        <input type="text" name="t_firstname"
+               value= {{ teacher.t_firstname }}
+               placeholder="firstname">
+    </input>
+    </p>
+
+    <p>
+        <label for="t_lastname">Last Name:</label>
+        <input type="text" name="t_lastname"
+               value=  {{ teacher.t_lastname }} 
+               placeholder="lastname">
+        </input>
+    </p>
+
+    <p>
+        <label for="t_email">Email:</label>
+        <input type="email" name="t_email"
+               value= {{  teacher.t_email  }}
+               placeholder="email">
+        </input>
+    </p>
+
+    <p>
+        <label for="t_year">Year of joining:</label>
+        <input type="number" name="t_year"
+               value={{ teacher.t_year }}
+               placeholder="year">
+        </input>
+    </p>
+
+    <p>
+        <label for="t_lab">Lab:</label>
+        <input type="text" name="t_lab" 
+               value= {{ teacher.t_lab }}
+               placeholder="lab">
+    </input>
+    </p>
+
+    <p>
+        <label for="t_mob">Mobile_no:</label>
+        <input type="number" name="t_mob"
+               value={{ teacher.t_mob }}
+               placeholder="mobile">
+        </input>
+    </p>
+
+    <p>
+        <button type="submit">Submit</button>
+    </p>
+</form>
+<!-- {% endblock %} -->
