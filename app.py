@@ -61,3 +61,39 @@ def create():
 
         return redirect(url_for('index'))
     return render_template('create.html')
+
+@app.route('/<int:student_roll_no>/edit/', methods=('GET', 'POST'))
+def edit(student_roll_no):
+    student = Student.query.get_or_404(student_roll_no)
+
+    if request.method == 'POST':
+        roll_no=int(request.form['roll_no'])
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        email = request.form['email']
+        year=int(request.form['year'])
+        branch = request.form['branch']
+        mob = int(request.form['mob'])
+
+
+        student.roll_no=roll_no
+        student.firstname = firstname
+        student.lastname = lastname
+        student.email = email
+        student.year = year
+        student.branch=branch
+        student.mob=mob
+
+        db.session.add(student)
+        db.session.commit()
+
+        return redirect(url_for('index'))
+
+    return render_template('edit.html', student=student)
+
+@app.post('/<int:student_roll_no>/delete/')
+def delete(student_roll_no):
+    student = Student.query.get_or_404(student_roll_no)
+    db.session.delete(student)
+    db.session.commit()
+    return redirect(url_for('index'))
