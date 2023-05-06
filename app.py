@@ -25,8 +25,53 @@ class Student(db.Model):
     mob = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return f'<Student {self.firstname}>'
+        return f'<Student {self.roll_no}>'
 
+class Teacher(db.Model):
+    t_id = db.Column(db.Integer, primary_key=True)
+    t_firstname = db.Column(db.String(100), nullable=False)
+    t_lastname = db.Column(db.String(100), nullable=False)
+    t_email = db.Column(db.String(80), unique=True, nullable=False)
+    t_year = db.Column(db.Integer)
+    t_lab = db.Column(db.String(100), nullable=False)
+    t_mob = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f'<Teacher {self.t_id}>'
+    
+@app.route('/teacher/')
+def t_index():
+    teachers=Teacher.query.all()
+    return render_template('t_index.html',teachers=teachers)
+
+@app.route('/teacher/<int:teacher_t_id>/')
+def teacher(teacher_t_id):
+    teacher = Student.query.get_or_404(teacher_t_id)
+    return render_template('teacher.html', teacher=teacher)
+
+@app.route('/teacher/create/', methods=('GET', 'POST'))
+def create_t():
+    if request.method == 'POST':
+        t_id = int(request.form['t_id'])
+        t_firstname = request.form['t_firstname']
+        t_lastname = request.form['t_lastname']
+        t_email = request.form['t_email']
+        t_year = int(request.form['t_year'])
+        t_lab = request.form['t_branch']
+        t_mob= int(request.form['t_mob'])
+        teacher = Teacher(t_id=t_id,
+                          t_firstname=t_firstname,
+                          t_lastname=t_lastname,
+                          t_email=t_email,
+                          t_year=t_year,
+                          t_lab=t_lab,
+                          t_mob=t_mob
+        )
+        db.session.add(teacher)
+        db.session.commit()
+
+        return redirect(url_for('t_index'))
+    return render_template('create.html')
 
 @app.route('/student/')
 def index():
@@ -124,3 +169,5 @@ def search():
     results = results.all()
     
     return render_template('search.html', results=results)
+
+
