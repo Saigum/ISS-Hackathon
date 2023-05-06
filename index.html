@@ -7,8 +7,9 @@
     <div class="student">
         <p><b>Roll No: {{ student.roll_no }}</b></p>
         <p class="name">
+            Name :
             <a href="{{ url_for('student', student_roll_no=student.roll_no)}}">
-                Name :{{ student.firstname }} {{ student.lastname }}
+                {{ student.firstname }} {{ student.lastname }}
             </a>
         </p>
         <p>Email : {{ student.email }}</p>
