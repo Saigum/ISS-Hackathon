@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<span class="title">
+    <h1>{% block title %} {{ student.firstname }} {{ student.lastname }}{% endblock %}</h1>
+</span>
+<div class="content">
+    <div class="student">
+        <p><b>Roll Number : {{ student.roll_no }}</b></p>
+        <b>
+            <p class="name"> Name : {{ student.firstname }} {{ student.lastname }}</p>
+        </b>
+        <p>Email : {{ student.email }}</p>
+        <p>Year: {{ student.year }} years old.</p>
+        <p>Mobile No: {{ student.mob}}</p>
+        <p>Branch :{{student.branch}}</p>
+    </div>
+</div>
+{% endblock %}
