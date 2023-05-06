@@ -42,17 +42,19 @@
                         </form>
                         {% if results %}
                             <h2 class="mt-5">Results:</h2>
-                            <ol>
+                           
                                 {% for book in results %}
+                                <ol>
                                 Name :
                                 <a href="{{ url_for('student', student_roll_no=book.roll_no)}}">
                                     {{ book.firstname }} {{ book.lastname }}
                                    
-                                </a>
-                                Roll no: {{ book.roll_no }}
-                                Branch : {{ book.branch}}
+                                </a> <br>
+                                Roll no: {{ book.roll_no }} <br>
+                                Branch : {{ book.branch}} <br>
+                                </ol>
                                 {% endfor %}
-                            </ol>
+                            
                         {% else %}
                             <p class="mt-5">No results found.</p>
                         {% endif %}
