@@ -41,26 +41,38 @@
                             </div>
                         </form>
                         {% if results %}
+                        <div class="search-results">
                             <h2 class="mt-5">Results:</h2>
-                           
+                            <ol>
                                 {% for book in results %}
-                                <ol>
-                                Name :
-                                <a href="{{ url_for('student', student_roll_no=book.roll_no)}}">
-                                    {{ book.firstname }} {{ book.lastname }}
-                                   
-                                </a> <br>
-                                Roll no: {{ book.roll_no }} <br>
-                                Branch : {{ book.branch}} <br>
-                                </ol>
+                                <li>
+                                    <div class="result-container">
+                                        <p>Name: <a href="{{ url_for('student', student_roll_no=book.roll_no) }}">{{ book.firstname }} {{ book.lastname }}</a></p>
+                                        <p>Roll no: {{ book.roll_no }}</p>
+                                        <p>Branch: {{ book.branch }}</p>
+                                    </div>
+                                </li>
                                 {% endfor %}
-                            
+                            </ol>
+                        </div>
                         {% else %}
-                            <p class="mt-5">No results found.</p>
+                        <p class="mt-5">No results found.</p>
                         {% endif %}
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <style>
+        a{
+            text-decoration: none;
+        }
+        .result-container {
+        background-color: #f3f3f3;
+        color: black;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    </style>
 {% endblock %}
