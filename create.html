@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create page</title>
+    </head>
+    <body>
+        <!-- {% extends 'base.html' %}
+
+{% block content %} -->
+    <h1 style="width: 100%"><!--{% block title %} Add a New Student {% endblock %}--></h1>
+    <form method="post">
+        <p>
+            <label for="Roll number">Roll number</label>
+            <input type="number" name="Roll number"placeholder="Roll number"></input>
+        </p>
+
+        <p>
+            <label for="firstname">Firstname</label>
+            <input type="text" name="firstname" placeholder="firstname"></input>
+        </p>
+        <p>
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname"placeholder="last name"></input>
+        </p>
+
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Student email"></input>
+        </p>
+
+        <p>
+            <label for="year">Year</label>
+            <input type="number" name="year" placeholder="year"></input>
+        </p>
+      
+        <p>
+           <label for="branch">Branch</label>
+           <input type="text" name="branch" placeholder="branch"></input>
+        </p>
+
+        <p>
+           <label for="mobile number">Mobile number</label>
+           <input type="number" name="mobile number" placeholder="mobile number"></input>
+        </p>
+
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+{% endblock %}
+    </body>
+</html>
