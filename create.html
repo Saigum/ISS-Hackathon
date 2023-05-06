@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Create page</title>
-    </head>
-    <body>
-        <!-- {% extends 'base.html' %}
 
-{% block content %} -->
-    <h1 style="width: 100%"><!--{% block title %} Add a New Student {% endblock %}--></h1>
+{% extends 'base.html' %}
+
+{% block content %} 
+    <h1 style="width: 100%">{% block title %} Add a New Student {% endblock %}</h1>
     <form method="post">
         <p>
             <label for="roll_no">Roll number</label>
@@ -48,5 +43,3 @@
         </p>
     </form>
 {% endblock %}
-    </body>
-</html>
