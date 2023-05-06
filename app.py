@@ -28,17 +28,17 @@ class Student(db.Model):
         return f'<Student {self.firstname}>'
 
 
-@app.route('/')
+@app.route('/student/')
 def index():
     students=Student.query.all()
     return render_template('index.html',students=students)
 
-@app.route('/<int:student_roll_no>/')
+@app.route('/student/<int:student_roll_no>/')
 def student(student_roll_no):
     student = Student.query.get_or_404(student_roll_no)
     return render_template('student.html', student=student)
 
-@app.route('/create/', methods=('GET', 'POST'))
+@app.route('/student/create/', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
         roll_no = int(request.form['roll_no'])
@@ -62,7 +62,7 @@ def create():
         return redirect(url_for('index'))
     return render_template('create.html')
 
-@app.route('/<int:student_roll_no>/edit/', methods=('GET', 'POST'))
+@app.route('/student/<int:student_roll_no>/edit/', methods=('GET', 'POST'))
 def edit(student_roll_no):
     student = Student.query.get_or_404(student_roll_no)
 
@@ -91,14 +91,14 @@ def edit(student_roll_no):
 
     return render_template('edit.html', student=student)
 
-@app.post('/<int:student_roll_no>/delete/')
+@app.post('/student/<int:student_roll_no>/delete/')
 def delete(student_roll_no):
     student = Student.query.get_or_404(student_roll_no)
     db.session.delete(student)
     db.session.commit()
     return redirect(url_for('index'))
 
-@app.route('/search' ,methods=('GET','POST'))
+@app.route('/student/search' ,methods=('GET','POST'))
 def search():
 
     roll_no = request.args.get('roll_no')
