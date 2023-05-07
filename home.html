@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Home Page</title>
   <style>
@@ -46,6 +47,10 @@
     }
 
     button[name="button2"]:hover {
+      background-color: rgb(136, 111, 58);
+    }
+
+    button[name="button2"]:hover {
       background-color: ;
     }
 
@@ -58,24 +63,72 @@
       padding: 12px;
       box-sizing: border-box;
     }
+
+    .typing-container {
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .input-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 42px;
+      background-color: black;
+      overflow: hidden;
+      margin-left: 8px;
+    }
+
+    .input-cursor {
+      animation: blink .6s linear infinite alternate;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+
+      40% {
+        opacity: 1;
+      }
+
+      60% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    #sentence {
+      color: black;
+    }
   </style>
 </head>
 
 <body>
   <h1 style="font-family: Arial, Helvetica, sans-serif; text-align: center; color: #297642;">~/Directory</h1>
-  <p style="color: #297642;">~/Directory: <span style="color: black;">$~info</span></p> 
+  <p style="color: #297642;">~/Directory: <span style="color: black;">$~info</span></p>
   <p style="font-weight: bold;padding-left: 102px;"> DESCRIPTION </p>
-  <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">            I am a IIIT contact Repository. :) </p>
-  <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">You can utilise me to store contacts and information.</p>
-  <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">That is my purpose </p>
-  <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">Do i serve any other purpose? (⊙.⊙)</p>
+
+  <!-- <p  id="typewriter-text"style="background-color: rgb(198, 197, 197);padding-left: 102px;" id="typewriter-text">            I am a IIIT contact Repository. :) </p>
+  <p id="typewriter-text" style="background-color: rgb(198, 197, 197);padding-left: 102px;">You can utilise me to store contacts and information.</p>
+  <p  id="typewriter-text" style="background-color: rgb(198, 197, 197);padding-left: 102px;">That is my purpose </p>
+  <p  id="typewriter-text"style="background-color: rgb(198, 197, 197);padding-left: 102px;">Do i serve any other purpose? (⊙.⊙)</p> -->
+  <div class="typing-container" style="color: black">
+    <span id="sentence" class="sentence" style="color: black;text-align: center;"></span>
+    <span class="input-cursor" style="color: black;"></span>
+  </div>
   <p style="color: #297642;">~/Directory: <span style="color: black;">$~ --help</span></p>
   <p style="font-weight: bold;padding-left: 102px;">INSTRUCTIONS</p>
   <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">Please choose one of the below options. :)</p>
   <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">After which , enter your access key </p>
   <p style="background-color: rgb(198, 197, 197);padding-left: 102px;font-size: xx-small;">Please o.O : </p>
   <form method="post">
-    <button type="button" name="button1" onclick="checkAdminKey('{{ url_for('index') }}')" style="display: flex;font-family: Helvetica" > /Student</button>
+    <button type="button" name="button1" onclick="checkAdminKey('{{ url_for('index') }}')"
+      style="display: flex;font-family: Helvetica"> /Student</button>
     <button type="button" name="button2" onclick="checkAdminKey('{{ url_for('t_index') }}')">/Teacher</button>
   </form>
 
@@ -88,6 +141,42 @@
         alert("Incorrect admin key!");
       }
     }
+
+
+    const text = `I am a IIIT contact Repository :) .
+
+You can utilise me to store contacts and information.
+
+That is my purpose .
+
+Do i serve any other purpose ?  (⊙.⊙)`;
+
+
+    const target = document.getElementById("sentence");
+
+
+
+    let index = 0;
+
+
+    const intervalId = setInterval(() => {
+
+      target.textContent += text[index];
+
+
+      index++;
+
+
+      if (index >= text.length) {
+
+        clearInterval(intervalId);
+      }
+    }, 100);
+
+
+
+
   </script>
 </body>
+
 </html>
