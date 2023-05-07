@@ -1,56 +1,93 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Home Page</title>
-    <style>
-      /* Center the form horizontally and vertically */
-      form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin-top: -10vh; /* Add negative margin to shift buttons upwards */
-      }
+<head>
+  <title>Home Page</title>
+  <style>
+    /* Center the form horizontally and vertically */
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin-top: -10vh;
+      /* Add negative margin to shift buttons upwards */
+    }
 
-      /* Style the buttons */
-      button {
-        font-size: 24px;
-        padding: 30px;
-        margin: 10px;
-        border-radius: 5px;
-        color: #fff;
-        border: none;
-        width: 25vw;
-        height: 10vh;
-      }
+    /* Style the buttons */
+    button {
+      font-size: 24px;
+      /* padding: 20px; */
+      margin: 10px;
+      border-radius: 5px;
+      color: #fff;
+      border: none;
+      width: 25vw;
+      height: 10vh;
+    }
 
-      /* Style the first button with a blue background */
-      button[name="button1"] {
-        background-color: #0077ff;
-      }
+    /* Style the first button with a blue background */
+    button[name="button1"] {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-      /* Style the second button with a green background */
-      button[name="button2"] {
-        background-color: #00cc44;
+    button[name="button1"]:hover {
+      background-color: rgb(136, 111, 58);
+    }
+
+    /* Style the second button with a green background */
+    button[name="button2"] {
+      background-color: #297644;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button[name="button2"]:hover {
+      background-color: ;
+    }
+
+    /* Add terminal-style border and padding */
+    body {
+      background-color: rgb(210, 209, 209);
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      border: 4px solid #8a8a8a;
+      padding: 12px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="font-family: Arial, Helvetica, sans-serif; text-align: center; color: #297642;">~/Directory</h1>
+  <p style="color: #297642;">~/Directory: <span style="color: black;">$~info</span></p> 
+  <p style="font-weight: bold;padding-left: 102px;"> DESCRIPTION </p>
+  <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">            I am a IIIT contact Repository. :) </p>
+  <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">You can utilise me to store contacts and information.</p>
+  <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">That is my purpose </p>
+  <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">Do i serve any other purpose? (⊙.⊙)</p>
+  <p style="color: #297642;">~/Directory: <span style="color: black;">$~ --help</span></p>
+  <p style="font-weight: bold;padding-left: 102px;">INSTRUCTIONS</p>
+  <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">Please choose one of the below options. :)</p>
+  <p style="background-color: rgb(198, 197, 197);padding-left: 102px;">After which , enter your access key </p>
+  <p style="background-color: rgb(198, 197, 197);padding-left: 102px;font-size: xx-small;">Please o.O : </p>
+  <form method="post">
+    <button type="button" name="button1" onclick="checkAdminKey('{{ url_for('index') }}')" style="display: flex;font-family: Helvetica" > /Student</button>
+    <button type="button" name="button2" onclick="checkAdminKey('{{ url_for('t_index') }}')">/Teacher</button>
+  </form>
+
+  <script>
+    function checkAdminKey(url) {
+      var adminKey = prompt("Please enter the admin key:");
+      if (adminKey === "112358") {
+        window.location.href = url;
+      } else {
+        alert("Incorrect admin key!");
       }
-    </style>
-  </head>
-  <body>
-    <h1>Welcome to My Website</h1>
-    <form method="post">
-      <button type="button" name="button1" onclick="checkAdminKey('{{ url_for('index') }}')">Student</button>
-      <button type="button" name="button2" onclick="checkAdminKey('{{ url_for('t_index') }}')">Teacher</button>
-    </form>
-    <script>
-        function checkAdminKey(url) {
-            var adminKey = prompt("Please enter the admin key:");
-            if (adminKey === "112358") {
-                window.location.href = url;
-            } else {
-                alert("Incorrect admin key!");
-            }
-        }
-    </script>
+    }
+  </script>
 </body>
-
 </html>
