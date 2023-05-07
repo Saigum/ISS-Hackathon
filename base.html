@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
     <title>{% block title %} {% endblock %} - FlaskApp</title>
     <style>
         .title {
@@ -43,109 +43,120 @@
             font-size: 3em;
             margin-left: 50px;
             text-decoration: none;
+            font-family:Helvetica;
         }
+        nav a:hover {
+            color: #e992a5;
+        }
+
         form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-    }
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
 
-    h1 {
-    font-size: 36px;
-    font-weight: 400;
-    margin-bottom: 20px;
-    }
+        h1 {
+            font-size: 36px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
 
-    p {
-    margin-bottom: 10px;
-    }
+        p {
+            margin-bottom: 10px;
+        }
 
-    label {
-    display: inline-block;
-    margin-bottom: 5px;
-    font-weight: 700;
-    }
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    font-size: 16px;
-    box-sizing: border-box; /* add this property */
-    }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+            box-sizing: border-box;
+            /* add this property */
+        }
 
-    button[type="submit"] {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    }
+        button[type="submit"] {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
 
-    button[type="submit"]:hover {
-    background-color: #3e8e41;
-    }
+        button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
 
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="number"]:focus {
-    outline: none;
-    border-color: #4CAF50;
-    }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
 
-    body {
-      background-image: url('https://t4.ftcdn.net/jpg/03/77/92/69/360_F_377926976_wNUurvMuWwCTj3Sqb9GEysLyE9DIZeML.webp');
-      background-repeat: no-repeat;
-      background-size: cover;
-      font-family: 'Noto Sans', sans-serif;
-    }
-    .search-results-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-top: 20px;
-}
-.search-results {
-    margin-top: 20px;
-}
+        body {
+            background-image: url('https://t4.ftcdn.net/jpg/03/77/92/69/360_F_377926976_wNUurvMuWwCTj3Sqb9GEysLyE9DIZeML.webp');
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: 'Noto Sans', sans-serif;
+        }
 
-.result-container {
-    background-color: #f3f3f3;
-    color: black;
-    padding: 10px;
-    margin-bottom: 10px;
-}
+        .search-results-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
 
-.result-container p {
-    margin: 5px 0;
-}
+        .search-results {
+            margin-top: 20px;
+        }
 
-.result-container a {
-    color: #007bff;
-}
+        .result-container {
+            background-color: #f3f3f3;
+            color: black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
 
+        .result-container p {
+            margin: 5px 0;
+        }
+
+        .result-container a {
+            color: #007bff;
+        }
+        a{
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <body>
     <nav>
-        <a href="{{ url_for('index') }}">FlaskApp</a>
-        <a href="{{ url_for('create') }}">Create</a>
-        <a href="{{ url_for('search') }}">Search</a>
-        <a href="{{ url_for('home') }}" style="float: right;" onclick="return confirm('Are you sure you want to logout?')">LOGOUT</a>
-        
+        <a href="{{ url_for('index') }}">Directory </a>
+                <a href="{{ url_for('create') }}">Create</a>
+                <a href="{{ url_for('search') }}">Search</a>
+                <a href="{{ url_for('home') }}" style="float: right;"
+                    onclick="return confirm('Are you sure you want to logout?')">LOGOUT</a>
+
     </nav>
     <hr>
     <div class="content">
