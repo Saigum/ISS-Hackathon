@@ -1,78 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h1 class="text-center">Search Results</h1>
-                    </div>
-                    <div class="card-body">
-                        <form action="/student/search" method="get" class="text-center">
-                            <div class="form-group row">
-                                <label for="roll_no" class="col-md-4 col-form-label text-md-end">Roll Number:</label>
-                                <div class="col-md-6">
-                                    <input type="number" name="roll_no" id="roll_no" class="form-control" value="{{ request.args.get('roll_no', '') }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="firstname" class="col-md-4 col-form-label text-md-end">Firstname:</label>
-                                <div class="col-md-6">
-                                    <input type="text" name="firstname" id="firstname" class="form-control" value="{{ request.args.get('firstname', '') }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="year" class="col-md-4 col-form-label text-md-end">Year:</label>
-                                <div class="col-md-6">
-                                    <input type="text" name="year" id="year" class="form-control" value="{{ request.args.get('year', '') }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="branch" class="col-md-4 col-form-label text-md-end">Branch:</label>
-                                <div class="col-md-6">
-                                    <input type="text" name="branch" id="branch" class="form-control" value="{{ request.args.get('branch', '') }}">
-                                </div>
-                            </div>
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">Search</button>
-                                </div>
-                            </div>
-                        </form>
-                        {% if results %}
-                        <div class="search-results">
-                            <h2 class="mt-5">Results:</h2>
-                            <ol>
-                                {% for book in results %}
-                                <li>
-                                    <div class="result-container">
-                                        <p>Name: <a href="{{ url_for('student', student_roll_no=book.roll_no) }}">{{ book.firstname }} {{ book.lastname }}</a></p>
-                                        <p>Roll no: {{ book.roll_no }}</p>
-                                        <p>Branch: {{ book.branch }}</p>
-                                    </div>
-                                </li>
-                                {% endfor %}
-                            </ol>
+
+<h1 style="width: 100%">
+    {% block title %} Search
+    {% endblock %} 
+</h1>
+
+    
+<form action="/student/search" method="get" class="text-center">
+    <label for="roll_no">Roll Number:</label>
+    <input type="number" name="roll_no" id="roll_no" class="form-control" value="{{ request.args.get('roll_no', '') }}">
+
+    <label for="firstname" >Firstname:</label>
+    <input type="text" name="firstname" id="firstname" class="form-control" value="{{ request.args.get('firstname', '') }}">
+
+    <label for="year">Year:</label>
+    <input type="text" name="year" id="year" class="form-control" value="{{ request.args.get('year', '') }}">
+
+    <label for="branch">Branch:</label>
+    <input type="text" name="branch" id="branch" class="form-control" value="{{ request.args.get('branch', '') }}">
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+
+<div class="search-results-container">
+    {% if not results %}
+        <p>No results found.</p>
+    {% else %}
+        <div class="search-results">
+            <h2>Results:</h2>
+            <ol>
+                {% for book in results %}
+                    <li>
+                        <div class="result-container">
+                            <p>Name: <a href="{{ url_for('student', student_roll_no=book.roll_no) }}">{{ book.firstname }} {{ book.lastname }}</a></p>
+                            <p>Roll no: {{ book.roll_no }}</p>
+                            <p>Branch: {{ book.branch }}</p>
                         </div>
-                        {% else %}
-                        <p class="mt-5">No results found.</p>
-                        {% endif %}
-                        
-                    </div>
-                </div>
-            </div>
+                    </li>
+                {% endfor %}
+            </ol>
         </div>
-    </div>
-    <style>
-        a{
-            text-decoration: none;
-        }
-        .result-container {
-        background-color: #f3f3f3;
-        color: black;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-    </style>
+    {% endif %}
+</div>
+
+
+
+
 {% endblock %}

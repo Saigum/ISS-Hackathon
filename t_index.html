@@ -1,25 +1,29 @@
 {% extends 'base2.html' %}
 
 {% block content %}
-<span class="title">
-    <h1>{% block title %} {{ teacher.t_firstname }} {{ teacher.t_lastname }}{% endblock %}</h1>
-</span>
+<h1 class="title">{% block title %} Teachers {% endblock %}</h1>
 <div class="content">
+    {% for teacher in teachers %}
     <div class="student">
-        <p><b>ID :{{ teacher.t_id }}</b></p>
-        <b>
-            <p class="name">{{ teacher.t_firstname }} {{ teacher.t_lastname }}</p>
-        </b>
+        <p><b>Teacher_id: {{ teacher.t_id }}</b></p>
+        <p class="name">
+            Name:
+            <a href="{{ url_for('teacher', teacher_t_id=teacher.t_id)}}">
+                {{ teacher.t_firstname }} {{ teacher.t_lastname }}
+            </a>
+        </p>
         <p>Email : {{ teacher.t_email }}</p>
-        <p>Year :{{ teacher.t_year }} </p>
+        <p>Year : {{ teacher.t_year }} .</p>
         <p>Mobile No: {{ teacher.t_mob}}</p>
         <p>Lab :{{teacher.t_lab}}</p>
         <a href="{{ url_for('edit_t', teacher_t_id=teacher.t_id) }}">Edit</a>
+
         <hr>
         <form method="POST" action="{{ url_for('delete_t', teacher_t_id=teacher.t_id) }}">
             <input type="submit" value="Delete Teacher"
                 onclick="return confirm('Are you sure you want to delete this entry?')">
         </form>
     </div>
+    {% endfor %}
 </div>
 {% endblock %}

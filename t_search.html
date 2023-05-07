@@ -1,0 +1,90 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+
+<h1 style="width: 100%">
+    {% block title %} Search
+    {% endblock %} 
+</h1>
+
+
+<form action="/teacher/search" method="get">
+
+        <label for="t_id" >Teacher id:</label>
+
+            <input type="number" name="t_id" id="t_id" class="form-control" value="{{ request.args.get('t_id', '') }}">
+
+
+
+        <label for="t_firstname" >Firstname:</label>
+
+            <input type="text" name="t_firstname" id="t_firstname" class="form-control" value="{{ request.args.get('t_firstname', '') }}">
+
+
+
+        <label for="t_year">Year:</label>
+
+            <input type="text" name="t_year" id="year" class="form-control" value="{{ request.args.get('t_year', '') }}">
+
+
+        <label for="lab" class="col-md-4 col-form-label text-md-end">Lab:</label>
+
+            <input type="text" name="t_lab" id="t_lab" class="form-control" value="{{ request.args.get('t_lab', '') }}">
+
+
+
+            <button type="submit" class="btn btn-primary">Search</button>
+
+
+</form>
+    <!-- {% if results %}
+    <div class="search-results">
+        <h2 class="mt-5">Results:</h2>
+        <ol>
+            {% for book in results %}
+            <li>
+                <div class="result-container">
+                    <p>Name: <a href="{{ url_for('teacher', teacher_t_id=book.t_id) }}">{{ book.t_firstname }} {{ book.t_lastname }}</a></p>
+                    <p>Teacher Id: {{ book.t_id }}</p>
+                    <p>Lab: {{ book.t_lab }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+    {% else %}
+    <p class="mt-5">No results found.</p>
+    {% endif %} -->
+                        
+    <div class="search-results-container">
+        {% if not results %}
+            <p>No results found.</p>
+        {% else %}
+            <div class="search-results">
+                <h2>Results:</h2>
+                <ol>
+                    {% for book in results %}
+                        <li>
+                            <div class="result-container">
+                                <p>Name: <a href="{{ url_for('teacher', teacher_t_id=book.t_id) }}">{{ book.t_firstname }} {{ book.t_lastname }}</a></p>
+                                <p>Teacher Id: {{ book.t_id }}</p>
+                                <p>Lab: {{ book.lab }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        {% endif %}
+    </div>
+    <style>
+        a{
+            text-decoration: none;
+        }
+        .result-container {
+        background-color: #f3f3f3;
+        color: black;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    </style>
+{% endblock %}

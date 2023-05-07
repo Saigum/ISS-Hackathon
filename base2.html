@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,46 +7,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet"> 
     <title>{% block title %} {% endblock %} - FlaskApp</title>
     <style>
-        .title {
-            margin: 5px;
-        }
+            .title {
+                margin: 5px;
+            }
 
-        .content {
-            margin: 5px;
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
+            .content {
+                margin: 5px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
 
-        .student {
-            flex: 20%;
-            padding: 10px;
-            margin: 5px;
-            background-color: #f3f3f3;
-            inline-size: 100%;
-        }
+            .student {
+                flex: 20%;
+                padding: 10px;
+                margin: 5px;
+                background-color: #f3f3f3;
+                inline-size: 100%;
+            }
 
-        .bio {
-            padding: 10px;
-            margin: 5px;
-            background-color: #ffffff;
-            color: #004835;
-        }
+            .bio {
+                padding: 10px;
+                margin: 5px;
+                background-color: #ffffff;
+                color: #004835;
+            }
 
-        .name a {
-            color: #00a36f;
-            text-decoration: none;
-        }
+            .name a {
+                color: #00a36f;
+                text-decoration: none;
+            }
 
-        nav a {
-            color: #d64161;
-            font-size: 3em;
-            margin-left: 50px;
-            text-decoration: none;
-        }
-        form {
-    max-width: 600px;
+            nav a {
+                color: #d64161;
+                font-size: 3em;
+                margin-left: 50px;
+                text-decoration: none;
+            }
+            form {
+    max-width: 50%;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -105,19 +106,12 @@
     }
 
     body {
+      font-family: 'Noto Sans', sans-serif;
       background-image: url('https://t4.ftcdn.net/jpg/03/77/92/69/360_F_377926976_wNUurvMuWwCTj3Sqb9GEysLyE9DIZeML.webp');
       background-repeat: no-repeat;
       background-size: cover;
-      font-family: 'Noto Sans', sans-serif;
     }
-    .search-results-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-top: 20px;
-}
-.search-results {
+    .search-results {
     margin-top: 20px;
 }
 
@@ -135,17 +129,25 @@
 .result-container a {
     color: #007bff;
 }
+.search-results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+
 
     </style>
 </head>
 
 <body>
     <nav>
-        <a href="{{ url_for('index') }}">FlaskApp</a>
-        <a href="{{ url_for('create') }}">Create</a>
-        <a href="{{ url_for('search') }}">Search</a>
+        <a href="{{ url_for('t_index') }}">FlaskApp</a>
+        <a href="{{ url_for('create_t') }}">Create</a>
+        <a href="{{ url_for('t_search') }}">Search</a>
         <a href="{{ url_for('home') }}" style="float: right;" onclick="return confirm('Are you sure you want to logout?')">LOGOUT</a>
-        
     </nav>
     <hr>
     <div class="content">

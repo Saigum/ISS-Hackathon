@@ -1,7 +1,11 @@
+
+{% extends 'base2.html' %}
+{% block content %}
+
 <h1 style="width: 100%">
-    <!-- {% block title %} Edit {{ student.firstname }}
-                           {{ student.lastname }}'s Details
-    {% endblock %} -->
+    {% block title %} Edit {{ teacher.t_firstname }}
+                           {{ teacher.t_lastname }}'s Details
+    {% endblock %} 
 </h1>
 <form method="post">
     <p>
@@ -64,4 +68,4 @@
         <button type="submit">Submit</button>
     </p>
 </form>
-<!-- {% endblock %} -->
+{% endblock %}
