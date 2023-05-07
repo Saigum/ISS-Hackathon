@@ -37,16 +37,20 @@ class Teacher(db.Model):
     t_mob = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return f'<Teacher {self.t_id}>'
-    
-@app.route('/teacher/')
+        return f'<teacher {self.t_id}>'
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/teacher/',methods=('GET', 'POST'))
 def t_index():
     teachers=Teacher.query.all()
     return render_template('t_index.html',teachers=teachers)
 
 @app.route('/teacher/<int:teacher_t_id>/')
 def teacher(teacher_t_id):
-    teacher = Student.query.get_or_404(teacher_t_id)
+    teacher = Teacher.query.get_or_404(teacher_t_id)
     return render_template('teacher.html', teacher=teacher)
 
 @app.route('/teacher/create/', methods=('GET', 'POST'))
@@ -57,7 +61,7 @@ def create_t():
         t_lastname = request.form['t_lastname']
         t_email = request.form['t_email']
         t_year = int(request.form['t_year'])
-        t_lab = request.form['t_branch']
+        t_lab = request.form['t_lab']
         t_mob= int(request.form['t_mob'])
         teacher = Teacher(t_id=t_id,
                           t_firstname=t_firstname,
@@ -71,9 +75,72 @@ def create_t():
         db.session.commit()
 
         return redirect(url_for('t_index'))
-    return render_template('create.html')
+    return render_template('t_create.html')
 
-@app.route('/student/')
+@app.route('/teacher/<int:teacher_t_id>/edit/', methods=('GET', 'POST'))
+def edit_t(teacher_t_id):
+    teacher = Teacher.query.get_or_404(teacher_t_id)
+
+    if request.method == 'POST':
+        t_id=int(request.form['t_id'])
+        t_firstname = request.form['t_firstname']
+        t_lastname = request.form['t_lastname']
+        t_email = request.form['t_email']
+        t_year=int(request.form['t_year'])
+        t_lab = request.form['t_lab']
+        t_mob = int(request.form['t_mob'])
+
+
+        teacher.t_id=t_id
+        teacher.t_firstname = t_firstname
+        teacher.t_lastname = t_lastname
+        teacher.t_email = t_email
+        teacher.t_year = t_year
+        teacher.t_lab=t_lab
+        teacher.t_mob=t_mob
+
+        db.session.add(teacher)
+        db.session.commit()
+
+        return redirect(url_for('t_index'))
+
+    return render_template('t_edit.html', teacher=teacher)
+
+@app.post('/teacher/<int:teacher_t_id>/delete/')
+def delete_t(teacher_t_id):
+    teacher = Teacher.query.get_or_404(teacher_t_id)
+    db.session.delete(teacher)
+    db.session.commit()
+    return redirect(url_for('t_index'))
+
+@app.route('/teacher/search' ,methods=('GET','POST'))
+def t_search():
+
+    t_id = request.args.get('t_id')
+    t_firstname = request.args.get('t_firstname')
+    t_year = request.args.get('t_year')
+    t_lab = request.args.get('t_lab')
+    
+    if  not t_id and not t_firstname and not t_year and not t_lab:
+        return render_template('t_search.html')
+    
+    results = Teacher.query
+    
+
+    if t_id:
+        results = results.filter_by(t_id = t_id)
+    if t_firstname:
+        results = results.filter_by(t_firstname = t_firstname)
+    if t_year:
+        results = results.filter_by(t_year=t_year)
+    if t_lab:
+        results=results.filter_by(t_lab=t_lab)
+    
+    results = results.all()
+    
+    return render_template('t_search.html', results=results)
+
+@app.route('/student/',methods=('GET', 'POST'))
 def index():
     students=Student.query.all()
     return render_template('index.html',students=students)
